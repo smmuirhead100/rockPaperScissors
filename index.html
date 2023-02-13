@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let rps = ["rock", "paper", "scissors"];
+        
+        function getComputerChoice(list) {
+            let i = Math.random() * list.length;
+            i = Math.floor(i);
+            console.log(list[i]);
+            return list[i];
+        }
+
+        function playRound(playerSelection, computerSelection){
+            if (playerSelection == computerSelection) {
+                return "It's a tie!";
+            }
+            else if (playerSelection == "rock" && computerSelection == "scissors") {
+                return "You win! Rock beats scissors!";
+            }
+            else if (playerSelection == "scissors" && computerSelection == "paper") {
+                return "You win! Scissors beats paper";
+            }
+            else if (playerSelection == "paper" && computerSelection == "rock") {
+                return "You win! Paper beats rock!";
+            }
+            else {
+                return "You lose!";
+            }
+        }
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            while (playerScore < 2 && computerScore < 2) {
+                let computerSelection = getComputerChoice(rps);
+                let playerSelection = window.prompt("rock, paper, or scissors?")
+                if (playRound(playerSelection, computerSelection) == "You lose!" || playRound(playerSelection, computerSelection) == "It's a tie!") {
+                    computerScore ++;
+                }
+                else {
+                    playerScore ++;
+                }
+            }
+            if (playerScore == 2) {
+                return "You won the game! The final score was " + playerScore + " to " + computerScore;
+            }
+            else {
+                return "You lost! The final score was " + computerScore + " to " + playerScore;
+            }
+        }
+
+        console.log(game());
+    </script>
+</body>
+</html>
